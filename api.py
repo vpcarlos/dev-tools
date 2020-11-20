@@ -2,7 +2,7 @@ from xmlrpc import client as xmlrpclib
 import decimal
 
 
-class OdooAPI():
+class Odoo():
     def __init__(self, srv, db, user, pwd):
         self.common = xmlrpclib.ServerProxy(
             '{}/xmlrpc/2/common'.format(srv))
@@ -43,8 +43,3 @@ class OdooAPI():
     def read(self, model, ids, fields=[]):
         return self.api.execute_kw(self.db, self.uid, self.pwd, model,
                                    'read', ids, fields)
-
-
-if __name__ == '__main__':
-    srv, db, user, pwd = 'https://domain.com', 'my_db', 'admin', 'admin'
-    odoo = OdooAPI(srv, db, user, pwd)

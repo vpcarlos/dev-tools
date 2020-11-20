@@ -1,16 +1,42 @@
-EXPAMPLES
+DEV TOOLS
+=========
 
-    # ----- Trigger an onchange function on all records of a specific model
-    # ids = odoo.search('stock.location',[[]])
-    # for id in ids:
-    #     odoo.execute('stock.location','onchange_picking_location',[id])
+Quick start
+-----------
+- Replace domain, database, user, password varibales with your own credentials on [main.py](https://github.com/vpcarlos/dev-tools/blob/master/main.py) file.
+- Call Odoo class methods and consume Odoo via API.
 
-    # ----- Uninstall a module via API
-    # odoo.execute('ir.module.module', 'button_immediate_uninstall', [367])
+Finaly just run script ond python3:
 
-    # ----- Cancel a invoice
-    # odoo.execute('account.invoice','action_invoice_cancel',[666])
+    $ python3 main.py
 
-    # ----- Search a record with domain and geting especifics fields
-    #  records = odoo.search_read(
-    #    'sale.order', [['state', '=', 'sale']], ['create_date'])
+Examples
+---------
+
+Search all sale orders:
+```python
+odoo.search('sale.order',[[]])
+```
+
+Uninstall a module via API:
+```python
+odoo.execute('ir.module.module', 'button_immediate_uninstall', [367])
+````
+
+Cancel an specific invoice:
+```python
+odoo.execute('account.invoice','action_invoice_cancel',[666])
+````
+
+Search a record with domain and geting especifics fields:
+```python
+records = odoo.search_read('sale.order', [['state', '=', 'sale']], ['create_date'])
+```
+
+Trigger an onchange function on all records of a specific model:
+
+```python
+ids = odoo.search('stock.location',[[]])
+for id in ids:
+    odoo.execute('stock.location','onchange_picking_location',[id])
+```
